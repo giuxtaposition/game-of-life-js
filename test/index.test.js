@@ -59,5 +59,26 @@ describe("game of life", () => {
             notEqual(grid.getAliveCells(), 4)
             notEqual(grid.getDeadCells(), 4)
         })
+
+        it("can get neighbours of a cell", () => {
+            const grid = Grid.aGrid(3, 3)
+
+            deepEqual(grid.getNeighbours(0, 0), [
+                grid.grid[0][1],
+                grid.grid[1][0],
+            ])
+        })
+
+        it("Any live cell with fewer than two live neighbours dies", () => {
+            const grid = Grid.aGrid(2, 2)
+
+            grid.grid[0][0].die()
+            grid.grid[0][1].die()
+            grid.grid[1][0].revive()
+
+            grid.nextGeneration()
+
+            equal(grid.grid[1][1].isAlive(), false)
+        })
     })
 })
