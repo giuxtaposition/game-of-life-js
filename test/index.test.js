@@ -75,6 +75,21 @@ describe("game of life", () => {
             grid.grid[0][0].die()
             grid.grid[0][1].die()
             grid.grid[1][0].revive()
+            grid.grid[1][1].revive()
+
+            grid.nextGeneration()
+
+            equal(grid.grid[1][1].isAlive(), false)
+        })
+
+        it("Any live cell with more than three live neighbours dies", () => {
+            const grid = Grid.aGrid(3, 3)
+
+            grid.grid[0][0].revive()
+            grid.grid[0][1].revive()
+            grid.grid[1][0].revive()
+            grid.grid[1][2].revive()
+            grid.grid[1][1].revive()
 
             grid.nextGeneration()
 

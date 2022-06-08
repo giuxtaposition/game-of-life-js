@@ -61,7 +61,7 @@ class Grid {
                     cell.isAlive()
                 )
 
-                if (aliveNeighbours.length < 2) {
+                if (aliveNeighbours.length < 2 || aliveNeighbours.length > 3) {
                     this.grid[indexRow][indexColumn].die()
                 }
             }
