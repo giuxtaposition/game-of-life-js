@@ -1,6 +1,6 @@
 const { equal, ok } = require("assert")
-const Cell = require("../index")
-const Grid = require("../index")
+const Cell = require("../src/Cell")
+const Grid = require("../src/Grid")
 
 describe("game of life", () => {
     describe("cell", () => {
