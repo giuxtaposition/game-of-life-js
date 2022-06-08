@@ -1,5 +1,6 @@
-const { equal } = require("assert")
+const { equal, ok } = require("assert")
 const Cell = require("../index")
+const Grid = require("../index")
 
 describe("game of life", () => {
     describe("cell", () => {
@@ -13,6 +14,12 @@ describe("game of life", () => {
             const cell = Cell.aCell(false)
 
             equal(cell.isAlive(), false)
+        })
+    })
+
+    describe("grid", () => {
+        it("exists", () => {
+            ok(Grid.aGrid())
         })
     })
 })

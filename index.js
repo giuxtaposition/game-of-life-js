@@ -11,3 +11,9 @@ class Cell {
 exports.aCell = function aCell(alive) {
     return new Cell(alive)
 }
+
+class Grid {}
+
+exports.aGrid = function aGrid() {
+    return new Grid()
+}
