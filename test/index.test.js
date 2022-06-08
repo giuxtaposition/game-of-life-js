@@ -31,9 +31,14 @@ describe("game of life", () => {
         })
 
         it("if alive status is not passed, it is randomly decided", () => {
-            const cell = Cell.aCell()
+            const cell1 = Cell.aCell().isAlive()
+            const cell2 = Cell.aCell().isAlive()
+            const cell3 = Cell.aCell().isAlive()
 
-            ok([true, false].includes(cell.isAlive()))
+            ok(
+                [cell1, cell2, cell3].includes(true) ||
+                    [cell1, cell2, cell3].includes(false)
+            )
         })
     })
 
@@ -53,11 +58,12 @@ describe("game of life", () => {
             deepEqual(grid.grid, expectedGrid)
         })
 
-        it("cells alive status is randomly generated", () => {
-            const grid = Grid.aGrid(2, 2)
+        it("cells are randomly generated", () => {
+            const grid1 = Grid.aGrid(2, 2)
+            const grid2 = Grid.aGrid(2, 2)
+            const grid3 = Grid.aGrid(2, 2)
 
-            notEqual(grid.getAliveCells(), 4)
-            notEqual(grid.getDeadCells(), 4)
+            ok(grid1 !== grid2 || grid2 !== grid3 || grid3 !== grid1)
         })
 
         it("can get neighbours of a cell", () => {
