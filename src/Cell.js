@@ -3,6 +3,14 @@ class Cell {
         this.alive = alive
     }
 
+    die() {
+        this.alive = false
+    }
+
+    revive() {
+        this.alive = true
+    }
+
     isAlive() {
         return this.alive
     }

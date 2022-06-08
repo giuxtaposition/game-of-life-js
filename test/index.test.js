@@ -15,6 +15,20 @@ describe("game of life", () => {
 
             equal(cell.isAlive(), false)
         })
+
+        it("can die", () => {
+            const cell = Cell.aCell(true)
+            cell.die()
+
+            equal(cell.isAlive(), false)
+        })
+
+        it("can return to life", () => {
+            const cell = Cell.aCell(false)
+            cell.revive()
+
+            equal(cell.isAlive(), true)
+        })
     })
 
     describe("grid", () => {
