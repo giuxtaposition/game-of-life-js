@@ -5,6 +5,14 @@ class Grid {
         this.buildGrid(row, column)
     }
 
+    getAliveCells() {
+        return this.grid.flat().filter(cell => cell.isAlive()).length
+    }
+
+    getDeadCells() {
+        return this.grid.flat().filter(cell => !cell.isAlive()).length
+    }
+
     getGridSize() {
         return this.grid.flat().length
     }
@@ -14,7 +22,7 @@ class Grid {
         for (let indexRow = 0; indexRow < row; indexRow++) {
             this.grid[indexRow] = []
             for (let indexColumn = 0; indexColumn < column; indexColumn++) {
-                this.grid[indexRow][indexColumn] = Cell.aCell(false)
+                this.grid[indexRow][indexColumn] = Cell.aCell()
             }
         }
     }

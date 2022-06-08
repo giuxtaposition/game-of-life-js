@@ -1,4 +1,4 @@
-const { equal, deepEqual } = require("assert")
+const { equal, deepEqual, notEqual, ok } = require("assert")
 const Cell = require("../src/Cell")
 const Grid = require("../src/Grid")
 
@@ -29,6 +29,12 @@ describe("game of life", () => {
 
             equal(cell.isAlive(), true)
         })
+
+        it("if alive status is not passed, it is randomly decided", () => {
+            const cell = Cell.aCell()
+
+            ok([true, false].includes(cell.isAlive()))
+        })
     })
 
     describe("grid", () => {
@@ -40,9 +46,18 @@ describe("game of life", () => {
 
         it("is made of cells", () => {
             const grid = Grid.aGrid(1, 1)
-            expectedGrid = [[Cell.aCell(false)]]
+            expectedGrid = [[Cell.aCell(true)]]
+
+            grid.grid[0][0].revive()
 
             deepEqual(grid.grid, expectedGrid)
+        })
+
+        it("cells alive status is randomly generated", () => {
+            const grid = Grid.aGrid(2, 2)
+
+            notEqual(grid.getAliveCells(), 4)
+            notEqual(grid.getDeadCells(), 4)
         })
     })
 })

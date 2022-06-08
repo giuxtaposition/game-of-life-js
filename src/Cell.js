@@ -1,6 +1,6 @@
 class Cell {
     constructor(alive) {
-        this.alive = alive
+        this.alive = alive !== undefined ? alive : Math.random() > 0.5
     }
 
     die() {
