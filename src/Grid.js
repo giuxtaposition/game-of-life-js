@@ -2,7 +2,7 @@ const Cell = require("./Cell")
 
 class Grid {
     constructor(row, column) {
-        this.buildGrid(row, column)
+        this.init(row, column)
     }
 
     getAliveCells() {
@@ -56,7 +56,7 @@ class Grid {
         return this.getNeighbours(row, column).filter(cell => cell.isAlive())
     }
 
-    buildGrid(row, column) {
+    init(row, column) {
         this.grid = []
         for (let indexRow = 0; indexRow < row; indexRow++) {
             this.grid[indexRow] = []
@@ -64,6 +64,12 @@ class Grid {
                 this.grid[indexRow][indexColumn] = Cell.aCell()
             }
         }
+    }
+
+    print() {
+        return this.grid
+            .map(row => row.map(cell => "[" + cell.print() + "]").join(""))
+            .join("\n")
     }
 
     nextGeneration() {

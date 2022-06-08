@@ -40,6 +40,14 @@ describe("game of life", () => {
                     [cell1, cell2, cell3].includes(false)
             )
         })
+
+        it("print cell status", () => {
+            const aliveCell = Cell.aCell(true)
+            equal(aliveCell.print(), "♥")
+
+            const deadCell = Cell.aCell(false)
+            equal(deadCell.print(), "✚")
+        })
     })
 
     describe("grid", () => {
@@ -56,6 +64,16 @@ describe("game of life", () => {
             grid.grid[0][0].revive()
 
             deepEqual(grid.grid, expectedGrid)
+        })
+
+        it("print grid", () => {
+            const grid = Grid.aGrid(2, 2)
+            grid.grid[0][0].revive()
+            grid.grid[0][1].revive()
+            grid.grid[1][0].die()
+            grid.grid[1][1].die()
+
+            equal(grid.print(), `[♥][♥]\n[✚][✚]`)
         })
 
         it("cells are randomly generated", () => {
