@@ -9,14 +9,6 @@ class Grid {
         return this.grid.flat().filter(cell => cell.isAlive()).length
     }
 
-    getDeadCells() {
-        return this.grid.flat().filter(cell => !cell.isAlive()).length
-    }
-
-    getGridSize() {
-        return this.grid.flat().length
-    }
-
     getNeighbours(rowPosition, columnPosition) {
         let neighbours = []
 
@@ -25,7 +17,7 @@ class Grid {
             indexRow <= rowPosition + 1;
             indexRow++
         ) {
-            if (indexRow < 0 || indexRow >= this.grid.length) {
+            if (rowIsOutsideGrid(indexRow, this.grid)) {
                 continue
             }
 
@@ -35,15 +27,8 @@ class Grid {
                 indexColumn++
             ) {
                 if (
-                    indexColumn < 0 ||
-                    indexColumn >= this.grid[indexRow].length
-                ) {
-                    continue
-                }
-
-                if (
-                    indexRow === rowPosition &&
-                    indexColumn === columnPosition
+                    columnIsOutsideGrid(indexColumn, indexRow, this.grid) ||
+                    isSelectedCell(indexRow, indexColumn)
                 ) {
                     continue
                 }
@@ -53,6 +38,22 @@ class Grid {
         }
 
         return neighbours
+
+        function columnIsOutsideGrid(indexColumn, indexRow, grid) {
+            return indexColumn < 0 || indexColumn >= grid[indexRow].length
+        }
+
+        function rowIsOutsideGrid(indexRow, grid) {
+            return indexRow < 0 || indexRow >= grid.length
+        }
+
+        function isSelectedCell(indexRow, indexColumn) {
+            return indexRow === rowPosition && indexColumn === columnPosition
+        }
+    }
+
+    getAliveNeighbours(row, column) {
+        return this.getNeighbours(row, column).filter(cell => cell.isAlive())
     }
 
     buildGrid(row, column) {
@@ -72,9 +73,9 @@ class Grid {
                 indexColumn < this.grid[indexRow].length;
                 indexColumn++
             ) {
-                const neighbours = this.getNeighbours(indexRow, indexColumn)
-                const aliveNeighbours = neighbours.filter(cell =>
-                    cell.isAlive()
+                const aliveNeighbours = this.getAliveNeighbours(
+                    indexRow,
+                    indexColumn
                 )
 
                 if (aliveNeighbours.length < 2 || aliveNeighbours.length > 3) {

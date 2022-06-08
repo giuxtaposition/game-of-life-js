@@ -46,7 +46,7 @@ describe("game of life", () => {
         it("has set size", () => {
             const grid = Grid.aGrid(3, 3)
 
-            equal(grid.getGridSize(), 9)
+            equal(grid.grid.flat().length, 9)
         })
 
         it("is made of cells", () => {
@@ -97,11 +97,12 @@ describe("game of life", () => {
             grid.grid[0][1].revive()
             grid.grid[1][0].revive()
             grid.grid[1][1].revive()
-            grid.grid[1][2].revive()
+            grid.grid[2][0].revive()
+            grid.grid[2][1].revive()
 
             grid.nextGeneration()
 
-            equal(grid.grid[1][1].isAlive(), false)
+            equal(grid.grid[1][0].isAlive(), false)
         })
 
         it("Any live cell with two or three live neighbours lives, unchanged, to the next generation", () => {
