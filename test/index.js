@@ -18,8 +18,10 @@ describe("game of life", () => {
     })
 
     describe("grid", () => {
-        it("exists", () => {
-            ok(Grid.aGrid())
+        it("has set size", () => {
+            const grid = Grid.aGrid(3, 3)
+
+            equal(grid.getGridSize(), 9)
         })
     })
 })
