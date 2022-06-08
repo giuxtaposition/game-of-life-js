@@ -80,6 +80,10 @@ class Grid {
                 if (aliveNeighbours.length < 2 || aliveNeighbours.length > 3) {
                     this.grid[indexRow][indexColumn].die()
                 }
+
+                if (aliveNeighbours.length === 3) {
+                    this.grid[indexRow][indexColumn].revive()
+                }
             }
         }
     }
