@@ -1,10 +1,22 @@
+const Cell = require("./Cell")
+
 class Grid {
     constructor(row, column) {
-        this.size = row * column
+        this.buildGrid(row, column)
     }
 
     getGridSize() {
-        return this.size
+        return this.grid.flat().length
+    }
+
+    buildGrid(row, column) {
+        this.grid = []
+        for (let indexRow = 0; indexRow < row; indexRow++) {
+            this.grid[indexRow] = []
+            for (let indexColumn = 0; indexColumn < column; indexColumn++) {
+                this.grid[indexRow][indexColumn] = Cell.aCell(false)
+            }
+        }
     }
 }
 

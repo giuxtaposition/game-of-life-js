@@ -1,4 +1,4 @@
-const { equal, ok } = require("assert")
+const { equal, deepEqual } = require("assert")
 const Cell = require("../src/Cell")
 const Grid = require("../src/Grid")
 
@@ -22,6 +22,13 @@ describe("game of life", () => {
             const grid = Grid.aGrid(3, 3)
 
             equal(grid.getGridSize(), 9)
+        })
+
+        it("is made of cells", () => {
+            const grid = Grid.aGrid(1, 1)
+            expectedGrid = [[Cell.aCell(false)]]
+
+            deepEqual(grid.grid, expectedGrid)
         })
     })
 })
