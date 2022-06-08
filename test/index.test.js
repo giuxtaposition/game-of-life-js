@@ -63,9 +63,12 @@ describe("game of life", () => {
         it("can get neighbours of a cell", () => {
             const grid = Grid.aGrid(3, 3)
 
-            deepEqual(grid.getNeighbours(0, 0), [
+            deepEqual(grid.getNeighbours(1, 0), [
+                grid.grid[0][0],
                 grid.grid[0][1],
-                grid.grid[1][0],
+                grid.grid[1][1],
+                grid.grid[2][0],
+                grid.grid[2][1],
             ])
         })
 

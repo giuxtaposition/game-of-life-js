@@ -20,20 +20,36 @@ class Grid {
     getNeighbours(rowPosition, columnPosition) {
         let neighbours = []
 
-        if (columnPosition > 0) {
-            neighbours.push(this.grid[rowPosition][columnPosition - 1])
-        }
+        for (
+            let indexRow = rowPosition - 1;
+            indexRow <= rowPosition + 1;
+            indexRow++
+        ) {
+            if (indexRow < 0 || indexRow >= this.grid.length) {
+                continue
+            }
 
-        if (columnPosition < this.grid[rowPosition].length - 1) {
-            neighbours.push(this.grid[rowPosition][columnPosition + 1])
-        }
+            for (
+                let indexColumn = columnPosition - 1;
+                indexColumn <= columnPosition + 1;
+                indexColumn++
+            ) {
+                if (
+                    indexColumn < 0 ||
+                    indexColumn >= this.grid[indexRow].length
+                ) {
+                    continue
+                }
 
-        if (rowPosition > 0) {
-            neighbours.push(this.grid[rowPosition - 1][columnPosition])
-        }
+                if (
+                    indexRow === rowPosition &&
+                    indexColumn === columnPosition
+                ) {
+                    continue
+                }
 
-        if (rowPosition < this.grid.length - 1) {
-            neighbours.push(this.grid[rowPosition + 1][columnPosition])
+                neighbours.push(this.grid[indexRow][indexColumn])
+            }
         }
 
         return neighbours
